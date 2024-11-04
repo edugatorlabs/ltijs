@@ -253,7 +253,7 @@ class Grade {
    * @param {String} lineItemId - LineItem ID.
    * @param {Object} score - Score/Grade following the LTI Standard application/vnd.ims.lis.v1.score+json.
    */
-  async submitScore (idtoken, lineItemId, score) {
+  async submitScore (idtoken, lineItemId, score, timestamp) {
     if (!idtoken) { provGradeServiceDebug('Missing IdToken object.'); throw new Error('MISSING_ID_TOKEN') }
     if (!lineItemId) { provGradeServiceDebug('Missing lineItemID.'); throw new Error('MISSING_LINEITEM_ID') }
     if (!score) { provGradeServiceDebug('Score object missing.'); throw new Error('MISSING_SCORE') }
@@ -298,7 +298,7 @@ class Grade {
     if (score.userId === undefined) score.userId = idtoken.user
 
     // Creating timestamp
-    score.timestamp = new Date(Date.now()).toISOString()
+    score.timestamp = new Date(timestamp ?? Date.now()).toISOString()
 
     provGradeServiceDebug('Sending score to: ' + scoreUrl)
     provGradeServiceDebug(score)
