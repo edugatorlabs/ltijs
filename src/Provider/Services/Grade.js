@@ -298,7 +298,7 @@ class Grade {
     if (score.userId === undefined) score.userId = idtoken.user
 
     // Creating timestamp
-    score.timestamp = new Date(timestamp ?? Date.now()).toISOString()
+    score.timestamp = timestamp ?? new Date(Date.now()).toISOString()
 
     provGradeServiceDebug('Sending score to: ' + scoreUrl)
     provGradeServiceDebug(score)
