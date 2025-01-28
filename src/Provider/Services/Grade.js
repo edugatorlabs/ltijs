@@ -300,6 +300,7 @@ class Grade {
     // Creating timestamp
     score.timestamp = timestamp ?? new Date(Date.now()).toISOString()
 
+    provGradeServiceDebug('Timestamp provided: ' + timestamp)
     provGradeServiceDebug('Sending score to: ' + scoreUrl)
     provGradeServiceDebug(score)
 

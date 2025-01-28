@@ -346,6 +346,7 @@ class Grade {
 
     // Creating timestamp
     score.timestamp = timestamp !== null && timestamp !== void 0 ? timestamp : new Date(Date.now()).toISOString();
+    provGradeServiceDebug('Timestamp provided: ' + timestamp);
     provGradeServiceDebug('Sending score to: ' + scoreUrl);
     provGradeServiceDebug(score);
     await got.post(scoreUrl, {
