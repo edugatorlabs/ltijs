@@ -346,7 +346,11 @@ class Grade {
 
     // Creating timestamp
     score.timestamp = new Date(Date.now()).toISOString();
-    if (timestamp) score.submittedAt = timestamp;
+    if (timestamp) {
+      score.submission = {
+        submittedAt: timestamp
+      };
+    }
     score.comment = "Published from Edugator at " + score.timestamp;
     provGradeServiceDebug('Timestamp provided: ' + timestamp);
     provGradeServiceDebug('Sending score to: ' + scoreUrl);
