@@ -345,7 +345,9 @@ class Grade {
     if (score.userId === undefined) score.userId = idtoken.user;
 
     // Creating timestamp
-    score.timestamp = timestamp !== null && timestamp !== void 0 ? timestamp : new Date(Date.now()).toISOString();
+    score.timestamp = new Date(Date.now()).toISOString();
+    if (timestamp) score.submittedAt = timestamp;
+    score.comment = "Published from Edugator at " + score.timestamp;
     provGradeServiceDebug('Timestamp provided: ' + timestamp);
     provGradeServiceDebug('Sending score to: ' + scoreUrl);
     provGradeServiceDebug(score);
