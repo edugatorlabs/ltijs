@@ -304,7 +304,10 @@ class Grade {
         submittedAt: timestamp,
       };
     }
-    score.comment = "Graded by Edugator on " + new Date(score.timestamp).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + " at " + new Date(score.timestamp).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+    // Render in US Eastern (America/New_York handles EST/EDT automatically) so
+    // the comment matches the course timezone Canvas displays, not the server's
+    // UTC clock.
+    score.comment = "Graded by Edugator on " + new Date(score.timestamp).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/New_York' }) + " at " + new Date(score.timestamp).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/New_York', timeZoneName: 'short' });
 
     provGradeServiceDebug('Timestamp provided: ' + timestamp)
     provGradeServiceDebug('Sending score to: ' + scoreUrl)
